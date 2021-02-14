@@ -1,12 +1,16 @@
-﻿using System;
+using System;
 
-namespace Program
+namespace main
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            DateTime thisDay = DateTime.Today;
+            Console.WriteLine("Как  тебя зовут?");
+            string name = Console.ReadLine();
+            Console.WriteLine($"Привет, {name}, сегодня {thisDay.ToString("D")}");
         }
     }
+
 }
