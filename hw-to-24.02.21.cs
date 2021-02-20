@@ -35,7 +35,7 @@ namespace Program
             }
             else
             {
-                while (name != "")
+                while (name != "") //как сделать такой вывод???
                 {
                     int LengthTeleName = 0;
                     Console.WriteLine("Введите имя пользователя");
@@ -53,7 +53,7 @@ namespace Program
             }
             else
             {
-                while (number != "")
+                while (number != "") //как сделать такой вывод???
                 {
                     int LengthTeleName = 0;
                     Console.WriteLine("Введите номер пользователя");
