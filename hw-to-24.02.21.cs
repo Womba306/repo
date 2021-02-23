@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Program
@@ -26,16 +26,32 @@ namespace Program
 
             // №2
             Console.WriteLine();
-            Console.WriteLine("Введите имя пользователя, нажмите Enter для использавания по умолчанию");
+            Console.WriteLine("Введите сколько пользователей вы хотите добавить, нажмите Enter для использавания по умолчанию");
+            string numbw = Console.ReadLine();
+            int numb = 0;
+            
+            if (numbw == "")
+            { 
+                numb = 4;
+                Console.WriteLine();
+                Console.WriteLine("Введите имя пользователя, нажмите Enter для использавания по умолчанию");
+            }
+            else
+            {
+                numb = Convert.ToInt16(numbw);
+                Console.WriteLine("Введите имя пользователя");
+            }
+            int Numbre = numb;
             string name = Console.ReadLine();
-            string[] TeleName = new string[] { };
-            if (name == "")
+            string[] TeleName = new string[numb];
+            if (name == "" )
             {
                 TeleName = new string[4] {"Dmitry", "Alex", "Viktor", "Jo"};
             }
             else
             {
-                while (name != "") //как сделать такой вывод???
+                
+                for (;numb>1;numb--)
                 {
                     int LengthTeleName = 0;
                     Console.WriteLine("Введите имя пользователя");
@@ -43,29 +59,32 @@ namespace Program
                     TeleName[LengthTeleName++] = name;
                 }
             }
-            Console.WriteLine("Введите номер пользователя, нажмите Enter для использавания по умолчанию");
+            int LengthTeleNumber = 0;
+            Console.WriteLine($"Введите номер пользователя-{TeleName[LengthTeleNumber]}, нажмите Enter для использавания по умолчанию(до 4 друзей)");
             string number = Console.ReadLine();
-            string[] TeleNumber = new string[] { };
+            string[] TeleNumber = new string[Numbre];
+            TeleNumber[2] = number;
             if (number == "")
             {
                 TeleNumber = new string[4] {"89267814675", "8962485617", "89124562341", "84995482454"};
-                
+
             }
             else
+                Console.WriteLine(TeleNumber.Length); 
+                Console.WriteLine(TeleName.Length);
             {
-                while (number != "") //как сделать такой вывод???
+                for (;LengthTeleNumber<Numbre;)
                 {
-                    int LengthTeleName = 0;
-                    Console.WriteLine("Введите номер пользователя");
+                    Console.WriteLine($"Введите номер пользователя-{TeleName[LengthTeleNumber]}");
                     number = Console.ReadLine();
-                    TeleName[LengthTeleName++] = number;
+                    TeleNumber[LengthTeleNumber++] = number;
+                    Console.WriteLine(LengthTeleNumber);
                 }
             }
 
-            for (int w = 0; w < 4; w++)
+            for (int w = 0; w < TeleName.Length; w++)
             {
                 Console.Write(TeleName[w] + "-" + TeleNumber[w]);
-                Console.WriteLine("");
             }
 
 
@@ -78,6 +97,8 @@ namespace Program
             {
                 Console.Write(massName[Nmass - 1]);
             }
+            
+            //"Морской бой"
         }
     }
 }
