@@ -60,7 +60,7 @@ namespace Program
                 }
             }
             int LengthTeleNumber = 0;
-            Console.WriteLine($"Введите номер пользователя-{TeleName[LengthTeleNumber]}, нажмите Enter для использавания по умолчанию(до 4 друзей)");
+            Console.WriteLine($"Введите номер пользователя-{TeleName[LengthTeleNumber]}, нажмите Enter для использавания по умолчанию(до 4 друзей)"); //сломалось где-то тут
             string number = Console.ReadLine();
             string[] TeleNumber = new string[Numbre];
             TeleNumber[2] = number;
