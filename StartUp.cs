@@ -17,10 +17,10 @@ namespace ToHomework
                 YourDiskToReturn[runs] = $"{runs+1} - {Drives[runs]}";
                 Console.WriteLine(YourDiskToReturn[runs]);
             }
-            Console.WriteLine(@"Выберите диск для вывода файлов");
+            Console.WriteLine(@"Выберите диск для вывода файлов"); 
             int ReturnDiskName = Console.Read();
             CheckDisk disc = new CheckDisk();
-            disc.RunProcess(Drives[ReturnDiskName]);
+            disc.RunProcess(Drives[ReturnDiskName]); //ломаеться тут
         }
     }
 }
