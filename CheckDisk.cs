@@ -9,7 +9,7 @@ namespace ToHomework
     {
         public void RunProcess(string DiskName)
         {
-            string dirName = $"{DiskName}:\\";
+            string dirName = $@"{DiskName}\";
 
             if (Directory.Exists(dirName))
             {
