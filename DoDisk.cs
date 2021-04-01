@@ -9,76 +9,75 @@ namespace ToHomework
     {
         public void RunProcess()
         {
+            CheckDisk list = new CheckDisk();
             Console.WriteLine("help - для вывода справки");
+            string[] ReservCheck = { null, @"C:\" };
             string DetectComand = Console.ReadLine();
-            string[] Check = new string[2];
-            Check[1] = "";
-            Check = DetectComand.Split(' ');
-            string dirName = "C:\\SomeFolder";
+            string dirName = @"C:\";
+            string[] Check = DetectComand.Split(' ');
             while (Check[0]!="exit") 
             {
+                
                 if (Check[0] == "help")
                 {
                     Help();
                 }
-                else
-                {
-                    if (Check[1] == "")
-                    {
-                        dirName = "C:\\";
-                    }
-                    else
-                    {
-                        dirName = Check[1];
-                    }
-                    
-                }
-                if (Check[0] == "del")
-                {
-                    Delete(dirName);
-                }
                 if (Check[0] == "list")
                 {
-                    List(dirName);
+                    
+                    list.RunProcess(dirName);
                 }
-                DetectComand = Console.ReadLine();
-                Check = DetectComand.Split(' ');
+                if (Check.Length == 1)
+                {
+                    ReservCheck[0] = Check[0];
+                    Check = ReservCheck;
+                }
+                dirName = Check[1];
+                if (Check[0] == "del")
+                {
+                    string[] files = Directory.GetFiles(dirName);
+                    int indexOfChar = files.IndexOf(".");
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (files[i].EndsWith("."))
+                            File.Delete(files[i]);
+                    }
+                    //DeleteFile(dirName);
+                    DeleteFold(dirName);
+                }
                 if (Check[0] == "cd")
                 {
-                    dirName=Check[1];
+                    dirName = Check[1];
+                    Console.WriteLine("");
+                    list.RunProcess(dirName);
                 }
+                ReservCheck = new string[] { null, dirName };
+                DetectComand = Console.ReadLine();
+                Check = DetectComand.Split(' ');
+
             }
         }
         static void Help()
         {
+            Console.WriteLine("-------------------");
+            Console.WriteLine("cd {Ваша папка} - смена папки");
             Console.WriteLine("del {Ваша папка/файла} - удаление папки/файла");
             Console.WriteLine("exit - для выхода из мэнаджера");
             Console.WriteLine("list {Ваша папка} - показывает содержимое текущей папки");
-            Console.WriteLine("cd {Ваша папка} - смена папки");
+            
         }
-        static void List(string DirName)
-        {
-            Console.WriteLine("Подкаталоги:");
-            string[] dirs = Directory.GetDirectories(DirName);
-            foreach (string s in dirs)
-            {
-                Console.WriteLine(s);
-            }
-            Console.WriteLine();
-            Console.WriteLine("Файлы:");
-            string[] files = Directory.GetFiles(DirName);
-            foreach (string s in files)
-            {
-                Console.WriteLine(s);
-            }
-        }
-        static void Delete(string DirName)
+        //static void DeleteFile(string FileName)
+        //{
+        //    File.Delete(FileName);
+        //    Console.WriteLine($"Файл {FileName} удален");
+        //}
+        static void DeleteFold(string DirName)
         { 
             try
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(DirName);
                 dirInfo.Delete(true);
-                Console.WriteLine("Каталог удален");
+                Console.WriteLine($"Каталог {DirName} удален");
             }
             catch (Exception ex)
             {
